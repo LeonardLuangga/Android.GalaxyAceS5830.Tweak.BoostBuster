@@ -59,7 +59,7 @@ do
 	
 	if [ -e $i/queue/read_ahead_kb ]
 	then
-		echo 1024 > $i/queue/read_ahead_kb;
+		echo 512 > $i/queue/read_ahead_kb;
 	fi
 	
 	if [ -e $j/queue/iostats ]
@@ -81,17 +81,17 @@ done
 
 if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]
 then
-    /system/xbin/echo "2048" > /sys/devices/virtual/bdi/179:0/read_ahead_kb;
+    /system/xbin/echo "1024" > /sys/devices/virtual/bdi/179:0/read_ahead_kb;
 fi
 
 if [ -e /sys/devices/virtual/bdi/179:8/read_ahead_kb ]
 then
-    /system/xbin/echo "2048" > /sys/devices/virtual/bdi/179:8/read_ahead_kb;
+    /system/xbin/echo "1024" > /sys/devices/virtual/bdi/179:8/read_ahead_kb;
 fi
 
 if [ -e /sys/devices/virtual/bdi/default/read_ahead_kb ]
 then
-    /system/xbin/echo "1024" > /sys/devices/virtual/bdi/default/read_ahead_kb;
+    /system/xbin/echo "512" > /sys/devices/virtual/bdi/default/read_ahead_kb;
 fi
 
 
@@ -105,5 +105,5 @@ done
 for l in $(busybox mount | grep ext4 | cut -d " " -f3)
 do
 	sync
-	busybox mount -o remount,commit=15 $l
+	busybox mount -o remount,noatime,nodiratime,commit=15 $l
 done
