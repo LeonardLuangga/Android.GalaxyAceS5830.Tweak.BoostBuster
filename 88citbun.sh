@@ -115,12 +115,13 @@ setprop ro.ril.hep 1;
 setprop ro.ril.enable.dtm 1;
 setprop ro.ril.enable.a53 1;
 setprop ro.ril.enable.3g.prefix 1;
+setprop keyguard.no_require_sim true;
 setprop net.tcp.buffersize.default 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.wifi 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.umts 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.edge 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.gprs 4096,87380,256960,4096,16384,256960;
-setprop wifi.supplicant_scan_interval 600;
+setprop wifi.supplicant_scan_interval 300;
 setprop windowsmgr.max_events_per_sec 150;
 setprop windowsmgr.support_rotation_270 true;
 setprop ro.mot.eri.losalert.delay 1000;
@@ -140,6 +141,7 @@ setprop persist.adb.notify 0;
 setprop pm.sleep_mode 1;
 setprop debug.sf.hw 1;
 setprop debug.performance.tuning 1;
+setprop dalvik.vm.execution-mode int:jit
 #untested
 #setprop ro.kernel.android.checkjni 0; #does it really fix some apps issue? http://forum.xda-developers.com/archive/index.php/t-1253326.html
 #setprop ro.mot.buttonlight.timeout 0; #force button lights on when screen is on
