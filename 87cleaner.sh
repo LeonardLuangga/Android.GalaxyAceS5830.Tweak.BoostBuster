@@ -30,3 +30,4 @@ if [ -e /dev/log/main ]
 then
   rm -f /dev/log/main
 fi
+
