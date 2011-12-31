@@ -43,19 +43,20 @@ echo 0 > /proc/sys/vm/oom_kill_allocating_task;
 echo 3 > /proc/sys/vm/page-cluster;
 echo 10 > /proc/sys/vm/swappiness;
 echo 50 > /proc/sys/vm/vfs_cache_pressure;
-echo 4096 > /proc/sys/vm/min_free_kbytes;
+echo 2896 > /proc/sys/vm/min_free_kbytes;
 
-#value for /proc/sys/vm/min_free_kbytes
-# RAM          min_free_kbytes
-# 16MB:        1024k
-# 32MB:        1448k
-# 64MB:        2048k
-# 128MB:       2896k
-# 256MB:       4096k
-# 512MB:       5792k
-# 1024MB:      8192k
-# 2048MB:      11584k
-# 4096MB:      16384k
+#default value for /proc/sys/vm/min_free_kbytes
+# RAM		min_free_kbytes
+# 16MB		512k
+# 32MB		724k
+# 64MB		1024k
+# 128MB		1448k
+# 256MB		2048k
+# 512MB		2896k
+# 1024MB	4096k
+# 2048MB	5792k
+# 4096MB	8192k
+# 8192MB	11584k
 
 
 #kernel tweaks
