@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# Copyright © 2011 Leonard Luangga
+# Copyright (c) 2011 Leonard Luangga
 
 
 #ping/icmp protection
