@@ -15,7 +15,7 @@ ZRM=`ls -d /sys/block/zram*`;
 #optimize scheduler
 for i in $LOOP $RAM $MTD $MMC $STL $BML $ZRM
 do
-  if [ -e $i/queue/scheduler ]
+	if [ -e $i/queue/scheduler ]
 	then
 		echo cfq > $i/queue/scheduler;
 	fi
