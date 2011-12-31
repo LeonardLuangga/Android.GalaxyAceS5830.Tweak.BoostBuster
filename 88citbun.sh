@@ -39,8 +39,8 @@ umount /sys/kernel/debug
 echo 0 > /proc/sys/vm/laptop_mode;
 echo 500 > /proc/sys/vm/dirty_expire_centisecs;
 echo 1000 > /proc/sys/vm/dirty_writeback_centisecs;
-echo 50 > /proc/sys/vm/dirty_ratio;
-echo 30 > /proc/sys/vm/dirty_background_ratio;
+echo 60 > /proc/sys/vm/dirty_ratio;
+echo 45 > /proc/sys/vm/dirty_background_ratio;
 
 
 #vm management tweaks
@@ -49,7 +49,7 @@ echo 0 > /proc/sys/vm/overcommit_memory;
 echo 0 > /proc/sys/vm/oom_kill_allocating_task;
 echo 3 > /proc/sys/vm/page-cluster;
 echo 10 > /proc/sys/vm/swappiness;
-echo 80 > /proc/sys/vm/vfs_cache_pressure; #default value=100. low value can cause memory leak, high value drains more battery
+echo 50 > /proc/sys/vm/vfs_cache_pressure; #default value=100. low value can cause memory leak, high value drains more battery
 echo 2896 > /proc/sys/vm/min_free_kbytes;
 
 #default value for /proc/sys/vm/min_free_kbytes
