@@ -5,8 +5,9 @@
 
 #drop caches to free some memory
 sync;
-sleep 1;
 echo 3 > /proc/sys/vm/drop_caches; #free pagecache, dentries and inodes
+sleep 1;
+echo 1 > /proc/sys/vm/drop_caches; #free pagecache. dentries and inodes will be managed by /proc/sys/vm/vfs_cache_pressure
 
 
 #internet speed tweaks
@@ -97,11 +98,23 @@ then
 fi
 
 
+#lowmemorykiller tweaks
+if [ -e /sys/module/lowmemorykiller/parameters/adj ]
+then
+	echo "0,1,2,4,6,15" > /sys/module/lowmemorykiller/parameters/adj;
+fi
+
+if [ -e /sys/module/lowmemorykiller/parameters/minfree ]
+then
+	echo "2560,4096,6144,12288,14336,18432" > /sys/module/lowmemorykiller/parameters/minfree;
+fi
+
+
 #governor tweaks
 #SAMPLING_RATE=$(busybox expr `cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_transition_latency` \* 750 / 1000);
 #echo $SAMPLING_RATE > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
+#echo 10000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
 echo 70 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold;
-echo 10000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
 
 
 #optimize build.prop
