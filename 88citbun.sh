@@ -23,17 +23,17 @@ echo 4096 87380 404480 > /proc/sys/net/ipv4/tcp_rmem;
 
 #battery tweaks (sleepers)
 mount -t debugfs none /sys/kernel/debug
-echo "NO_GENTLE_FAIR_SLEEPERS" > /sys/kernel/debug/sched_features;
-echo "NO_NEW_FAIR_SLEEPERS" > /sys/kernel/debug/sched_features;
-echo "NO_NORMALIZED_SLEEPER" > /sys/kernel/debug/sched_features;
+echo NO_NEW_FAIR_SLEEPERS > /sys/kernel/debug/sched_features;
+echo NO_NORMALIZED_SLEEPERS > /sys/kernel/debug/sched_features;
+umount /sys/kernel/debug
 
 
 #battery tweaks (vm)
 echo 0 > /proc/sys/vm/laptop_mode;
-echo 1000 > /proc/sys/vm/dirty_expire_centisecs;
-echo 2000 > /proc/sys/vm/dirty_writeback_centisecs;
+echo 500 > /proc/sys/vm/dirty_expire_centisecs;
+echo 1000 > /proc/sys/vm/dirty_writeback_centisecs;
 echo 50 > /proc/sys/vm/dirty_ratio;
-echo 20 > /proc/sys/vm/dirty_background_ratio;
+echo 30 > /proc/sys/vm/dirty_background_ratio;
 
 
 #vm management tweaks
@@ -42,7 +42,7 @@ echo 0 > /proc/sys/vm/overcommit_memory;
 echo 0 > /proc/sys/vm/oom_kill_allocating_task;
 echo 3 > /proc/sys/vm/page-cluster;
 echo 10 > /proc/sys/vm/swappiness;
-echo 50 > /proc/sys/vm/vfs_cache_pressure;
+echo 80 > /proc/sys/vm/vfs_cache_pressure; #default value=100. low value can cause memory leak, high value drains more battery
 echo 2896 > /proc/sys/vm/min_free_kbytes;
 
 #default value for /proc/sys/vm/min_free_kbytes
@@ -71,7 +71,7 @@ echo 500 512000 64 2048 > /proc/sys/kernel/sem;
 
 if [ -e /proc/sys/kernel/sched_min_granularity_ns ]
 then
-  echo 200000 > /proc/sys/kernel/sched_min_granularity_ns;
+	echo 200000 > /proc/sys/kernel/sched_min_granularity_ns;
 fi
 
 if [ -e /proc/sys/kernel/sched_latency_ns ]
