@@ -69,7 +69,7 @@ echo 2896 > /proc/sys/vm/min_free_kbytes;
 #kernel tweaks
 #echo 1 > /proc/sys/kernel/panic_on_oops;
 #echo 60 > /proc/sys/kernel/panic;
-echo 0> /proc/sys/kernel/panic_on_oops;
+echo 0 > /proc/sys/kernel/panic_on_oops;
 echo 30 > /proc/sys/fs/lease-break-time;
 #echo 64000 > /proc/sys/kernel/msgmni; #1024
 #echo 64000 > /proc/sys/kernel/msgmax;
