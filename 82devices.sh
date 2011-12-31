@@ -1,4 +1,6 @@
 #!/system/bin/sh
+#
+# Copyright (c) Leonard Luangga
 
 
 LOOP=`ls -d /sys/block/loop*`;
@@ -10,7 +12,7 @@ BML=`ls -d /sys/block/bml*`;
 ZRM=`ls -d /sys/block/zram*`;
 
 
-#optimize memory
+#optimize scheduler
 for i in $LOOP $RAM $MTD $MMC $STL $BML $ZRM
 do
   if [ -e $i/queue/scheduler ]
@@ -54,7 +56,7 @@ for j in $MTD $MMC $STL $BML $ZRM
 do
 	if [ -e $j/queue/nr_requests ]
 	then
-		echo 512 > $j/queue/nr_requests;
+		echo 256 > $j/queue/nr_requests;
 	fi
 	
 	if [ -e $i/queue/read_ahead_kb ]
@@ -102,8 +104,15 @@ do
 	busybox mount -o remount,noatime,nodiratime $k
 done
 
-for l in $(busybox mount | grep ext4 | cut -d " " -f3)
+for l in $(busybox mount | grep ext3 | cut -d " " -f3)
 do
 	sync
 	busybox mount -o remount,noatime,nodiratime,commit=15 $l
 done
+
+for m in $(busybox mount | grep ext4 | cut -d " " -f3)
+do
+	sync
+	busybox mount -o remount,noatime,nodiratime,commit=15 $m
+done
+
