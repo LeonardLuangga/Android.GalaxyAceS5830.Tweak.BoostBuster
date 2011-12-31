@@ -1,6 +1,6 @@
 #!/system/bih/sh
 #
-# Copyright © 2011 Leonard Luangga
+# Copyright (c) 2011 Leonard Luangga
 
 
 #drop caches
