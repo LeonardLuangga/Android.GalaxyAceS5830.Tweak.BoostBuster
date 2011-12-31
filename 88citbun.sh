@@ -3,6 +3,12 @@
 # Copyright © 2011 Leonard Luangga
 
 
+#drop caches
+sync;
+sleep 1;
+echo 3 > /proc/sys/vm/drop_caches; #free pagecache, dentries and inodes
+
+
 #internet speed tweaks
 echo 0 > /proc/sys/net/ipv4/tcp_timestamps;
 echo 0 > /proc/sys/net/ipv4/tcp_tw_recycle;
