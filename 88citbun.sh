@@ -3,7 +3,7 @@
 # Copyright (c) 2011 Leonard Luangga
 
 
-#drop caches
+#drop caches to free some memory
 sync;
 sleep 1;
 echo 3 > /proc/sys/vm/drop_caches; #free pagecache, dentries and inodes
@@ -70,10 +70,10 @@ echo 2896 > /proc/sys/vm/min_free_kbytes;
 #echo 60 > /proc/sys/kernel/panic;
 echo 0> /proc/sys/kernel/panic_on_oops;
 echo 30 > /proc/sys/fs/lease-break-time;
-echo 64000 > /proc/sys/kernel/msgmni; #1024
-echo 64000 > /proc/sys/kernel/msgmax;
-echo 1000000 > /proc/sys/kernel/sched_rt_period_us;
-echo 950000 > /proc/sys/kernel/sched_rt_runtime_us;
+#echo 64000 > /proc/sys/kernel/msgmni; #1024
+#echo 64000 > /proc/sys/kernel/msgmax;
+#echo 1000000 > /proc/sys/kernel/sched_rt_period_us;
+#echo 950000 > /proc/sys/kernel/sched_rt_runtime_us;
 echo 500 512000 64 2048 > /proc/sys/kernel/sem;
 
 if [ -e /proc/sys/kernel/sched_min_granularity_ns ]
@@ -109,10 +109,10 @@ echo 10000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
 #setprop ro.ril.hsxpa 1; #HSDPA only? hmm I think this one drain more battery than UMTS only
 setprop ro.ril.hsxpa 0; #UMTS only? slower but I think this one drain less battery
 setprop ro.ril.gprsclass 10;
-setprop ro.ril.hep 1;
-setprop ro.ril.enable.dtm 0;
 setprop ro.ril.hsupa.category 6;
 setprop ro.ril.hsdpa.category 8;
+setprop ro.ril.hep 1;
+setprop ro.ril.enable.dtm 1;
 setprop ro.ril.enable.a53 1;
 setprop ro.ril.enable.3g.prefix 1;
 setprop net.tcp.buffersize.default 4096,87380,256960,4096,16384,256960;
@@ -121,15 +121,18 @@ setprop net.tcp.buffersize.umts 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.edge 4096,87380,256960,4096,16384,256960;
 setprop net.tcp.buffersize.gprs 4096,87380,256960,4096,16384,256960;
 setprop wifi.supplicant_scan_interval 600;
-setprop windowsmgr.max_events_per_sec 60;
+setprop windowsmgr.max_events_per_sec 150;
 setprop windowsmgr.support_rotation_270 true;
 setprop ro.mot.eri.losalert.delay 1000;
 setprop ro.lge.proximity.delay 25;
-setprop mot.proximity.delay 75;
+setprop mot.proximity.delay 25;
 setprop persist.sys.use_dithering 0;
 setprop persist.sys.purgeable_assets 1;
+setprop ro.media.dec.jpeg.memcap 20000000;
+setprop ro.media.enc.jpeg.quality 100;
 setprop ro.HOME_APP_ADJ 1;
 setprop ro.HOME_APP_MEM 2048;
+setprop dalvik.vm.heapsize 48m;
 setprop video.accelerate.hw 1;
 setprop media.stagefright.enable-player true;
 setprop ro.ril.disable.power.collapse 0;
@@ -137,3 +140,7 @@ setprop persist.adb.notify 0;
 setprop pm.sleep_mode 1;
 setprop debug.sf.hw 1;
 setprop debug.performance.tuning 1;
+#untested
+#setprop ro.kernel.android.checkjni 0; #does it really fix some apps issue? http://forum.xda-developers.com/archive/index.php/t-1253326.html
+#setprop ro.mot.buttonlight.timeout 0; #force button lights on when screen is on
+
