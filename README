@@ -1,9 +1,5 @@
 This is a tweak source that I named as BoostBuster, my goal from this tweak is to make Samsung Galaxy Ace S5830 (Running Android OS) to be more faster and more battery life. I'm open for any suggestions :)
 
 Known Issues:
-- Force Close on some apps
-- CPU usage is 100% oftenly
-- Battery temperature gets high quickly especially when charging
 - Does the touchscreen sensitivity tweak works? I don't think it is but I'm gonna try to fix it
-
-(I just changed some values but haven't tested it yet)
+- Please inform me for any issues you found
